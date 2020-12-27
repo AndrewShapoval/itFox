@@ -6,6 +6,8 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import {Text, View, StyleSheet} from "react-native";
+import {Navbar} from "./src/userInterface/Navbar";
+import {SignIn} from "./src/userInterface/SignIn";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -16,7 +18,8 @@ export default function App() {
   } else {
     return (
         <View style={styles.container}>
-          <Text>Hello!</Text>
+          <Navbar title={"Authorization"}/>
+          <SignIn/>
         </View>
     );
   }
@@ -24,10 +27,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 })
 
