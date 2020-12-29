@@ -1,8 +1,13 @@
 import React from 'react';
 import {Button, TextInput, View, StyleSheet, Alert} from 'react-native';
 import {useFormik} from "formik";
+import {useDispatch} from "react-redux";
+import {setIsLoggedInAC} from "../businessLogicLayer/appReducer";
+import {Navbar} from "./Navbar";
 
 export const SignIn = () => {
+
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -20,7 +25,7 @@ export const SignIn = () => {
         },
         onSubmit: (values) => {
             if (values.email === "test@test.org" && values.password === "password") {
-                Alert.alert("Ok")
+                dispatch(setIsLoggedInAC(true))
             } else {
                 Alert.alert("Password and login are incorrect")
                 formik.resetForm()
@@ -36,27 +41,32 @@ export const SignIn = () => {
     }
 
     return (
-        <View style={styles.block}>
-            <TextInput style={styles.input}
-                       placeholder="Enter your email"
-                       onChangeText={formik.handleChange('email')}
-                       onBlur={formik.handleBlur('email')}
-                       value={formik.values.email}
-            />
-            <TextInput style={styles.input}
-                       placeholder="Enter your password"
-                       onChangeText={formik.handleChange('password')}
-                       onBlur={formik.handleBlur('password')}
-                       value={formik.values.password}
-            />
-            <Button onPress={formikHandleSubmit} title="Sign in"/>
-        </View>
+        <>
+            <Navbar title={"Authorization"}/>
+            <View style={styles.block}>
+                <TextInput style={styles.input}
+                           placeholder="Enter your email"
+                           onChangeText={formik.handleChange('email')}
+                           onBlur={formik.handleBlur('email')}
+                           value={formik.values.email}
+                />
+                <TextInput style={styles.input}
+                           placeholder="Enter your password"
+                           onChangeText={formik.handleChange('password')}
+                           onBlur={formik.handleBlur('password')}
+                           value={formik.values.password}
+                />
+                <Button onPress={formikHandleSubmit} title="Sign in"/>
+            </View>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     block: {
+        flex: 1,
         alignItems: "center",
+        justifyContent: "center"
 
     },
     input: {
