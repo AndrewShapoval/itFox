@@ -1,12 +1,10 @@
 import React, {useEffect} from "react";
-import {Button, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {Navbar} from "./Navbar";
 import {
     getWeatherForecastTC,
     RequestStatusType,
-    setIsLoggedInAC,
     WeatherDataType,
-    WeatherType
 } from "../businessLogicLayer/appReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../businessLogicLayer/store";
